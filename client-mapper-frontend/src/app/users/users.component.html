@@ -1,0 +1,47 @@
+<h2>Administrar Usuarios</h2>
+
+<!-- Formulario de búsqueda -->
+<form (ngSubmit)="findUser()" style="margin-bottom: 1rem;">
+  <input type="email" [(ngModel)]="searchEmail" name="searchEmail" placeholder="Buscar por email" required />
+  <button type="submit">Buscar</button>
+  <button type="button" (click)="fetchUsers()">Mostrar todos</button>
+</form>
+
+<!-- Formulario de crear/editar usuario -->
+<form (ngSubmit)="submitUser()" #userForm="ngForm" style="margin-bottom: 2rem;">
+  <input type="text" [(ngModel)]="formUser.name" name="name" placeholder="Nombre" required />
+  <input type="email" [(ngModel)]="formUser.email" name="email" placeholder="Email" required />
+  <input type="text" [(ngModel)]="formUser.telephone" name="telephone" placeholder="Teléfono" required />
+  <input type="password" [(ngModel)]="formUser.password" name="password" placeholder="Contraseña" required />
+  <input type="text" [(ngModel)]="formUser.address" name="address" placeholder="Dirección" required />
+  <button type="submit">{{ editing ? 'Actualizar' : 'Crear' }}</button>
+  <button type="button" (click)="resetForm()" *ngIf="editing">Cancelar</button>
+</form>
+
+<div *ngIf="loading">Cargando usuarios...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<!-- Tabla de usuarios -->
+<table *ngIf="!loading && users.length">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.telephone }}</td>
+      <td>{{ user.address }}</td>
+      <td>
+        <button (click)="editUser(user, user.idusers || i)">Editar</button>
+        <button (click)="deleteUser(user.idusers || i)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

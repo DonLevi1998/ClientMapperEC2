@@ -1,0 +1,179 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+  <button (click)="openModal()">Add User</button>
+  <button (click)="loadUsers()">Reload Users</button>
+  <button (click)="openProductModal()">Add Product</button>
+  <button (click)="loadProducts()">Reload Products</button>
+</aside>
+  <main class="admin-content">
+    <h2>User Management</h2>
+    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" style="color: green;">{{ successMessage }}</div>
+    <table *ngIf="users.length > 0" border="1" cellpadding="8" cellspacing="0" style="width:100%; margin-bottom: 2rem;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.telephone }}</td>
+          <td>{{ user.address }}</td>
+          <td>
+            <button (click)="openEditModal(user)">Edit</button>
+            <button (click)="deleteUser(user.idusers)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="users.length === 0">There are no registered users.</div>
+
+    <!-- Modal Add user -->
+    <div *ngIf="showModal" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Add User</h3>
+        <form (ngSubmit)="addUser()">
+          <label>Name:<br>
+            <input [(ngModel)]="newUser.name" name="name" required />
+          </label><br>
+          <label>Email:<br>
+            <input [(ngModel)]="newUser.email" name="email" required />
+          </label><br>
+          <label>Phone:<br>
+            <input [(ngModel)]="newUser.telephone" name="telephone" required />
+          </label><br>
+          <label>Address:<br>
+            <input [(ngModel)]="newUser.address" name="address" required />
+          </label><br>
+          <label>Password:<br>
+            <input [(ngModel)]="newUser.password" name="password" type="password" required />
+          </label><br><br>
+          <button type="submit">Add</button>
+          <button type="button" (click)="closeModal()">Calcel</button>
+        </form>
+        <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+      </div>
+    </div>
+
+    <!-- Modal edit user -->
+    <div *ngIf="showEditModal && editUserData" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Edit User</h3>
+        <form (ngSubmit)="updateUser()">
+          <label>Namen:<br>
+            <input [(ngModel)]="editUserData.name" name="editName" required />
+          </label><br>
+          <label>Email:<br>
+            <input [(ngModel)]="editUserData.email" name="editEmail" required />
+          </label><br>
+          <label>Phone:<br>
+            <input [(ngModel)]="editUserData.telephone" name="editTelephone" required />
+          </label><br>
+          <label>Address:<br>
+            <input [(ngModel)]="editUserData.address" name="editAddress" required />
+          </label><br>
+          <button type="submit">Save</button>
+          <button type="button" (click)="closeEditModal()">Calcel</button>
+        </form>
+        <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+      </div>
+    </div>
+  </main>
+</div>
+<hr style="margin: 2.5rem 0; border: none; border-top: 2px solid #e0e0e0;">
+
+<div class="products-section">
+  <h2>Product Management</h2>
+  <div class="button-group">
+    <button (click)="openProductModal()">Add Product</button>
+    <button (click)="loadProducts()">Reload Products</button>
+  </div>
+  <div *ngIf="products.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Return Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>
+            {{ product.return_date ? (product.return_date | date:'yyyy-MM-dd HH:mm') : '—' }}
+          </td>
+          <td>
+            <button (click)="openEditProductModal(product)">Edit</button>
+            <button class="danger" (click)="deleteProduct(product.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="products.length === 0">No products registered.</div>
+</div>
+
+<!-- Modal for adding product -->
+<div *ngIf="showProductModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Add Product</h3>
+    <form (ngSubmit)="addProduct()">
+      <label>Name:<br>
+        <input [(ngModel)]="newProduct.name" name="productName" required />
+      </label><br>
+      <label>Description:<br>
+        <input [(ngModel)]="newProduct.description" name="productDescription" required />
+      </label><br>
+      <button type="submit">Add</button>
+      <button type="button" (click)="closeProductModal()">Cancel</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>
+</div>
+
+<!-- Modal for editing product -->
+<div *ngIf="showEditProductModal && editProductData" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Edit Product</h3>
+    <form (ngSubmit)="updateProduct()">
+      <label>Name:<br>
+        <input [(ngModel)]="editProductData.name" name="editProductName" required />
+      </label><br>
+      <label>Description:<br>
+        <input [(ngModel)]="editProductData.description" name="editProductDescription" required />
+      </label><br>
+      <button type="submit">Save</button>
+      <button type="button" (click)="closeEditProductModal()">Cancel</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 320px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+</style>

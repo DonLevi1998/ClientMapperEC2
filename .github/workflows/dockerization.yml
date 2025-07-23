@@ -1,0 +1,187 @@
+name: Registry image
+
+on:
+  push:
+    branches: ["QA"]
+
+jobs:
+  # USER DOMAIN CONTINOUS DEPLOYMENT
+  
+  login-push-usercreate:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_CREATEUSER }}
+      domain_name: ${{ secrets.USER_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.USER_CREATE_MICRONAME }}
+
+  login-push-userread:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_READUSER }}
+      domain_name: ${{ secrets.USER_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.USER_READ_MICRONAME }}
+
+  login-push-userupdate:
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_UPDATEUSER }}
+      domain_name: ${{ secrets.USER_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.USER_UPDATE_MICRONAME }}
+
+  login-push-userdelete:
+    
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_DELETEUSER }}
+      domain_name: ${{ secrets.USER_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.USER_DELETE_MICRONAME }}
+
+  ec2-cd-userdomain:
+    needs: [login-push-usercreate, login-push-userread, login-push-userupdate,login-push-userdelete]
+    if: always()
+    uses: ./.github/workflows/setupDocker.yml
+    secrets:
+      ec2_host: ${{ secrets.AWS_IP_USERS }}
+      ec2_key: ${{ secrets.AWS_USERS_PEM }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      domain_name: ${{ secrets.USER_DOMAIN_NAME }}
+
+  # PRODUCTS DOMAIN CONTINOUS DEPLOYMENT
+  
+  login-push-productcreate:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_CREATEPRODUCT }}
+      domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.PRODUCTS_CREATE_MICRONAME }}
+
+  login-push-productread:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_READPRODUCT }}
+      domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.PRODUCTS_REAS_MICRONAME }}
+
+  login-push-productsupdate:
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_UPDATEPRODUCT }}
+      domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.PRODUCTS_UPDATE_MICRONAME }}
+
+  login-push-productsdelete:
+    
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_DELETEPRODUCT }}
+      domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.PRODUCTS_DELETE_MICRONAME }}
+
+  ec2-cd-productsdomain:
+    needs: [login-push-productcreate, login-push-productread, login-push-productsupdate,login-push-productsdelete]
+    if: always()
+    uses: ./.github/workflows/setupDocker.yml
+    secrets:
+      ec2_host: ${{ secrets.AWS_IP_PRODUCTS }}
+      ec2_key: ${{ secrets.AWS_PRODUCTS_PEM }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
+  
+  # AUTH DOMAIN CONTINOUS DEPLOYMENT
+  
+  login-push-authlogin:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_AUTHLOGIN }}
+      domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.AUTH_LOGIN_MICRONAME }}
+
+  login-push-authhash:
+    
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_AUTHHASH }}
+      domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.AUTH_HASH_MICRONAME }}
+
+  login-push-hashrol:
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_AUTHROL }}
+      domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.AUTH_ROL_MICRONAME }}
+
+  login-push-authtoken:
+    
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_AUTHTOKEN }}
+      domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.AUTH_TOKEN_MICRONAME }}
+
+  ec2-cd-authdomain:
+    needs: [login-push-authlogin, login-push-authhash, login-push-hashrol,login-push-authtoken]
+    if: always()
+    uses: ./.github/workflows/setupDocker.yml
+    secrets:
+      ec2_host: ${{ secrets.AWS_IP_AUTH }}
+      ec2_key: ${{ secrets.AWS_AUTH_PEM }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
+
+  login-push-frontend:
+    
+
+    uses: ./.github/workflows/login-build-push.yml
+    secrets:
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      repository_name: ${{ secrets.DOCKER_REPOSITORY_FRONTEND }}
+      domain_name: ${{ secrets.FRONTEND_DOMAIN_NAME }}
+      microservice_name: ${{ secrets.FRONTEND_MICRONAME }}
+
+  ec2-cd-frontend:
+    needs: [login-push-frontend]
+    if: always()
+    uses: ./.github/workflows/setupDocker.yml
+    secrets:
+      ec2_host: ${{ secrets.AWS_IP_FRONTEND }}
+      ec2_key: ${{ secrets.AWS_FRONTEND_PEM }}
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      domain_name: ${{ secrets.FRONTEND_DOMAIN_NAME }}
+

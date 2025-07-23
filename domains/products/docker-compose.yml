@@ -1,0 +1,56 @@
+services:
+  products-create:
+    build:
+      context: ./PR-products-create
+      dockerfile: dockerfile
+    container_name: products-create
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - products-network
+    restart: unless-stopped
+
+  products-delete:
+    build:
+      context: ./PR-products-delete
+      dockerfile: dockerfile
+    container_name: products-delete
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - products-network
+    restart: unless-stopped
+
+  products-read:
+    build:
+      context: ./PR-products-read
+      dockerfile: dockerfile
+    container_name: products-read
+    ports:
+      - "5002:5002"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - products-network
+    restart: unless-stopped
+
+  products-update:
+    build:
+      context: ./PR-products-update
+      dockerfile: dockerfile
+    container_name: products-update
+    ports:
+      - "5003:5003"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - products-network
+    restart: unless-stopped
+
+networks:
+  products-network:
+    driver: bridge

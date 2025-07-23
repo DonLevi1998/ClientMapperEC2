@@ -1,0 +1,76 @@
+.auth-container {
+  max-width: 370px;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(35,41,70,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.auth-container h2 {
+  text-align: center;
+  color: #232946;
+  margin-bottom: 2rem;
+}
+.auth-form label {
+  font-weight: 600;
+  color: #232946;
+  margin-bottom: 0.2rem;
+}
+.auth-form input {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #bfc0c0;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #f7f7fa;
+  color: #232946;
+}
+button {
+  background: #232946;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.7rem;
+  transition: background 0.2s, color 0.2s;
+}
+button.secondary {
+  background: #eebbc3;
+  color: #232946;
+}
+button.secondary:hover {
+  background: #232946;
+  color: #eebbc3;
+}
+button:hover {
+  background: #444b6e;
+}
+.error-message {
+  color: #b71c1c;
+  background: #ffeaea;
+  border: 1px solid #ffb3b3;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+button, button.secondary {
+  width: auto;
+  min-width: 120px;
+  align-self: center;
+}

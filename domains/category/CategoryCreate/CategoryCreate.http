@@ -1,0 +1,6 @@
+@CategoryCreate_HostAddress = http://localhost:5033
+
+GET {{CategoryCreate_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

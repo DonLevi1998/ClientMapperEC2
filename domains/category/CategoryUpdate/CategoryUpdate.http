@@ -1,0 +1,6 @@
+@CategoryUpdate_HostAddress = http://localhost:5167
+
+GET {{CategoryUpdate_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,24 @@
+services:
+  users-create:
+    image: leviathan119/createuser:latest
+    ports:
+      - "5020:5020"
+    restart: unless-stopped
+
+  users-delete:
+    image: leviathan119/deleteuser:latest
+    ports:
+      - "5021:5021"
+    restart: unless-stopped
+
+  users-list-find:
+    image: leviathan119/readuser:latest
+    ports:
+      - "5022:5022"
+    restart: unless-stopped
+
+  users-update:
+    image: leviathan119/updateuser:latest
+    ports:
+      - "5023:5023"
+    restart: unless-stopped

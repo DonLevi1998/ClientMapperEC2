@@ -1,0 +1,22 @@
+<div class="auth-container">
+  <h2>Crear Cuenta</h2>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate class="auth-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+    <label for="telephone">Phone</label>
+    <input type="text" id="telephone" name="telephone" [(ngModel)]="user.telephone" required>
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" [(ngModel)]="user.address" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+    <label for="confirmPassword">Confirm password</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div class="button-group">
+      <button type="submit">Create Account</button>
+      <button type="button" class="secondary" (click)="goToLogin()">Go to Login</button>
+    </div>
+  </form>
+</div>

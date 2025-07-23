@@ -1,0 +1,6 @@
+@CategoryFindList_HostAddress = http://localhost:5166
+
+GET {{CategoryFindList_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,24 @@
+h2 {
+  text-align: center;
+  color: #7b1fa2;
+  margin-top: 60px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+button[routerLink] {
+  display: block;
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 0;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: 18px auto 0 auto;
+  width: 180px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button[routerLink]:hover {
+  background: #bdbdbd;
+}

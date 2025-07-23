@@ -1,0 +1,26 @@
+# Build and publish directories
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+
+# IDE settings
+.vscode/
+.idea/
+
+# Environment and secrets
+.env
+secrets.json
+
+# Logs
+*.log
+
+# Docker
+Dockerfile
+
+# OS-specific files
+Thumbs.db
+.DS_Store

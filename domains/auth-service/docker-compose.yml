@@ -1,0 +1,25 @@
+services:
+  authlogin:
+    image: leviathan119/authlogin:latest
+    ports:
+      - "5030:5030"
+    restart: unless-stopped
+
+  authrol:
+    image: leviathan119/authrol:latest
+    ports:
+      - "5032:5032"
+    restart: unless-stopped
+
+  authhash:
+    image: leviathan119/authhash:latest
+    ports:
+      - "5031:5031"
+    restart: unless-stopped
+
+  authtoken:
+    image: leviathan119/authtoken:latest
+    ports:
+      - "5033:5033"
+    restart: unless-stopped
+

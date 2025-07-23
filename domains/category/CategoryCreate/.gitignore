@@ -1,0 +1,23 @@
+# Compilados
+bin/
+obj/
+out/
+
+# Archivos de usuario
+.vscode/
+*.user
+*.suo
+
+# Dotnet secrets
+secrets.json
+
+# Logs
+*.log
+
+# Docker
+Dockerfile
+docker-compose.override.yml
+
+# Configs temporales
+*.env
+.env.*
