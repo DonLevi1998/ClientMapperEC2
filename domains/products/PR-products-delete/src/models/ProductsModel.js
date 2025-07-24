@@ -4,7 +4,7 @@ const deleteProduct = async (id) => {
   try {
     const query = `
       DELETE FROM products
-      WHERE id = $1
+      WHERE idproducts = $1
       RETURNING *;
     `;
     const result = await connectDB.query(query, [id]);

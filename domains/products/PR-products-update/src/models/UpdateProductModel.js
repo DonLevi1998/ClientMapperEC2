@@ -5,7 +5,7 @@ const updateProduct = async (id, name, description) => {
     const query = `
       UPDATE products
       SET name = $1, description = $2
-      WHERE id = $3
+      WHERE idproducts = $3
       RETURNING *;
     `;
     const values = [name, description, id];
