@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.get('/me', me);
 
-const PORT = process.env.PORT || 5033;
+const PORT = 5033;
 app.listen(PORT, () => {
-  console.log(`auth-token running on port ${PORT}`);
+  console.log(`auth-token running on port 5033`);
 });

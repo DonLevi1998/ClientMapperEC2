@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
             email: user.email 
         });
         
-        const roleResponse = await axios.post('http://localhost:5032/check-role', {}, {
+        const roleResponse = await axios.post('http://44.221.230.43:5032/check-role', {}, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

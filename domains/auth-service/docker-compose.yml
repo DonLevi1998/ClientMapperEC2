@@ -1,56 +1,33 @@
 services:
   authlogin:
     build: ./auth-login
+    env_file: .env
     image: leviathan119/authlogin:latest
     ports:
       - "5030:5030"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   authrol:
     build: ./auth-rol
+    env_file: .env
     image: leviathan119/authrol:latest
     ports:
       - "5032:5032"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   authhash:
     build: ./auth-hash
+    env_file: .env
     image: leviathan119/authhash:latest
     ports:
       - "5031:5031"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   authtoken:
     build: ./auth-token
+    env_file: .env
     image: leviathan119/authtoken:latest
     ports:
       - "5033:5033"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
+

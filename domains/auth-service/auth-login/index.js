@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.post('/login', login);
 
-const PORT = process.env.PORT || 5030;
+const PORT = 5030;
 app.listen(PORT, () => {
-  console.log(`auth-login running on port ${PORT}`);
+  console.log(`auth-login running on port 5030`);
 });

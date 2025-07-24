@@ -66,8 +66,8 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal server error' });
 });
 
-const PORT = process.env.PORT || 5032;
+const PORT = 5032;
 app.listen(PORT, () => {
-    console.log(`\n🔒 Auth-rol service running on port ${PORT}`);
+    console.log(`\n🔒 Auth-rol service running on port 5032`);
     console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}\n`);
 });
