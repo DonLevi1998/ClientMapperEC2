@@ -1,55 +1,68 @@
 services:
   products-create:
-    build:
-      context: ./PR-products-create
-      dockerfile: dockerfile
-    container_name: products-create
+    build: ./PR-products-create
+    image: leviathan119/createproduct:latest  
     ports:
       - "5000:5000"
+    restart: unless-stopped
     environment:
-      - NODE_ENV=production
+      - RDS_HOST=${RDS_HOST}              
+      - RDS_DATABASE=${RDS_DATABASE}
+      - RDS_USER=${RDS_USER}
+      - RDS_PASSWORD=${RDS_PASSWORD}
+      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
-    restart: unless-stopped
 
   products-delete:
-    build:
-      context: ./PR-products-delete
-      dockerfile: dockerfile
+    build: ./PR-products-delete
+    image: leviathan119/deleteproduct:latest
     container_name: products-delete
     ports:
       - "5001:5001"
+    restart: unless-stopped
     environment:
-      - NODE_ENV=production
+      - RDS_HOST=${RDS_HOST}
+      - RDS_DATABASE=${RDS_DATABASE}
+      - RDS_USER=${RDS_USER}
+      - RDS_PASSWORD=${RDS_PASSWORD}
+      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
-    restart: unless-stopped
+    
 
   products-read:
-    build:
-      context: ./PR-products-read
-      dockerfile: dockerfile
+    build: ./PR-products-read
+    image: leviathan119/readproduct:latest
     container_name: products-read
     ports:
       - "5002:5002"
+    restart: unless-stopped
     environment:
-      - NODE_ENV=production
+      - RDS_HOST=${RDS_HOST}
+      - RDS_DATABASE=${RDS_DATABASE}
+      - RDS_USER=${RDS_USER}
+      - RDS_PASSWORD=${RDS_PASSWORD}
+      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
-    restart: unless-stopped
+
 
   products-update:
-    build:
-      context: ./PR-products-update
-      dockerfile: dockerfile
+    build: ./PR-products-update
+    image: leviathan119/updateproduct:latest
     container_name: products-update
     ports:
       - "5003:5003"
+    restart: unless-stopped
     environment:
-      - NODE_ENV=production
+      - RDS_HOST=${RDS_HOST}
+      - RDS_DATABASE=${RDS_DATABASE}
+      - RDS_USER=${RDS_USER}
+      - RDS_PASSWORD=${RDS_PASSWORD}
+      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
-    restart: unless-stopped
 
 networks:
   products-network:

@@ -78,7 +78,7 @@ jobs:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       repository_name: ${{ secrets.DOCKER_REPOSITORY_READPRODUCT }}
       domain_name: ${{ secrets.PRODUCTS_DOMAIN_NAME }}
-      microservice_name: ${{ secrets.PRODUCTS_REAS_MICRONAME }}
+      microservice_name: ${{ secrets.PRODUCTS_READ_MICRONAME }}
 
   login-push-productsupdate:
 
@@ -164,24 +164,5 @@ jobs:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       domain_name: ${{ secrets.AUTH_DOMAIN_NAME }}
 
-  login-push-frontend:
-    
 
-    uses: ./.github/workflows/login-build-push.yml
-    secrets:
-      docker_password: ${{ secrets.DOCKER_PASSWORD }}
-      docker_username: ${{ secrets.DOCKER_USERNAME }}
-      repository_name: ${{ secrets.DOCKER_REPOSITORY_FRONTEND }}
-      domain_name: ${{ secrets.FRONTEND_DOMAIN_NAME }}
-      microservice_name: ${{ secrets.FRONTEND_MICRONAME }}
-
-  ec2-cd-frontend:
-    needs: [login-push-frontend]
-    if: always()
-    uses: ./.github/workflows/setupDocker.yml
-    secrets:
-      ec2_host: ${{ secrets.AWS_IP_FRONTEND }}
-      ec2_key: ${{ secrets.AWS_FRONTEND_PEM }}
-      docker_username: ${{ secrets.DOCKER_USERNAME }}
-      domain_name: ${{ secrets.FRONTEND_DOMAIN_NAME }}
 
