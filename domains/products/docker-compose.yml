@@ -30,7 +30,6 @@ services:
     networks:
       - products-network
     
-
   products-read:
     build: ./PR-products-read
     image: leviathan119/readproduct:latest
