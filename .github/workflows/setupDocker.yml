@@ -24,24 +24,23 @@ jobs:
       working-directory: ./domains/${{ secrets.domain_name }}
       run: |
         echo "${{ secrets.ec2_key }}" > private_key.pem
-        chmod 600 private_key.pem
-
-    - name: Create .env file
-      working-directory: ./domains/${{ secrets.domain_name }}
-      run: |
         echo "RDS_HOST=${{ secrets.RDS_HOST }}" > .env
         echo "RDS_DATABASE=${{ secrets.RDS_DATABASE }}" >> .env
         echo "RDS_USER=${{ secrets.RDS_USER }}" >> .env
         echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}" >> .env
         echo "RDS_PORT=${{ secrets.RDS_PORT }}" >> .env
+        chmod 600 private_key.pem
+        chmod 600 .env
 
     - name: Copy docker-compose.yml & .env to EC2 using SCP
       working-directory: ./domains/${{ secrets.domain_name }}
       run: |
-        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml ubuntu@${{ secrets.ec2_host }}:/home/ubuntu/
-        scp -o StrictHostKeyChecking=no -i private_key.pem .env ubuntu@${{ secrets.ec2_host }}:/home/ubuntu/
+        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml .env ubuntu@${{ secrets.ec2_host }}:/home/ubuntu/
+
     - name: Cleanup private key file
-      run: rm -f private_key.pem
+      run: | 
+        rm -f private_key.pem
+        rm -f .env
 
     - name: SSH into EC2 and Deploy Application
       uses: appleboy/ssh-action@v1.2.0
