@@ -34,7 +34,12 @@ app.use(
     redirect: false,
   }),
 );
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://deaf9d8a91ca.ngrok-free.app'); 
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  next();
+});
 /**
  * Handle all other requests by rendering the Angular application.
  */
