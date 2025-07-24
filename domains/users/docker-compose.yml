@@ -1,56 +1,33 @@
 services:
   users-create:
     build: ./US-users-create
+    env_file: .env
     image: leviathan119/createuser:latest
     ports:
       - "5020:5020"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   users-delete:
     build: ./US-users-delete
+    env_file: .env
     image: leviathan119/deleteuser:latest
     ports:
       - "5021:5021"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   users-list-find:
     build: ./US-users-list-find
+    env_file: .env
     image: leviathan119/readuser:latest
     ports:
       - "5022:5022"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
 
   users-update:
     build: ./US-users-update
+    env_file: .env
     image: leviathan119/updateuser:latest
     ports:
       - "5023:5023"
     restart: unless-stopped
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
+

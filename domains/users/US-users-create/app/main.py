@@ -7,11 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 
 app = FastAPI()
-URL_FRONTEND = os.getenv("URL_FRONTEND", "http://localhost:4200")
-URL_AUTH_HASH = os.getenv("AUTH_HASH_URL", "http://localhost:5031/hash-password")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[URL_FRONTEND],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

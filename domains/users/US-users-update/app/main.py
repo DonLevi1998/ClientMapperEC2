@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:4200")],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,7 +32,7 @@ def update_user(user_id: int, user: schemas.UserUpdate, db: Session = Depends(ge
         if value is not None:
             # Si el campo es password, hashearlo antes de guardar
             if var == "password":
-                response = requests.post(os.getenv("AUTH_HASH_URL", "http://localhost:5031/hash-password"), json={"password": value})
+                response = requests.post(os.getenv("AUTH_HASH_URL"), json={"password": value})
                 if response.status_code != 200:
                     raise HTTPException(status_code=500, detail="Error hashing password")
                 value = response.json()["hash"]
