@@ -4,14 +4,23 @@ const cors = require('cors');
 const { checkUserRole } = require('./controllers/rolController');
 const jwt = require('jsonwebtoken');
 const app = express();
+const morgan = require('morgan');
+
 
 // Middleware de logging
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
     next();
 });
+app.use(morgan('dev'));
+const corsOptions = {
+  origin: 'https://23a1e5c0962c.ngrok-free.app',
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: false
+};
+app.use(cors(corsOptions));
 
-app.use(cors());
 app.use(express.json());
 
 app.post('/check-role', async (req, res) => {

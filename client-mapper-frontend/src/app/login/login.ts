@@ -27,10 +27,10 @@ export class Login {
     }
 
     this.errorMessage = '';
-    console.log('[3] Making login request to http://localhost:5030/login');
+    
 
     try {
-      const response = await fetch('http://localhost:5030/login', {
+      const response = await fetch('http://34.234.127.78:5030/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: this.email, password: this.password }),
@@ -65,9 +65,9 @@ export class Login {
 
       try {
         console.log(
-          '[11] Making role request to http://localhost:5032/check-role'
+          '[11] Making role request to http://34.234.127.78:5032/check-role'
         );
-        const roleResponse = await fetch('http://localhost:5032/check-role', {
+        const roleResponse = await fetch('http://34.234.127.78:5032/check-role', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

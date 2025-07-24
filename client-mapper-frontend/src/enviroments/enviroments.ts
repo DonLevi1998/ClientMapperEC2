@@ -1,27 +1,27 @@
 export const LocalApiUsers = {
   production: false,
-  ApiCreateUser: 'http://127.0.0.1:5020/users/',
+  ApiCreateUser: 'http://54.166.75.139:5020/users/',
 
-  ApiDeleteUser: 'http://127.0.0.1:5021/users/',
+  ApiDeleteUser: 'http://54.166.75.139:5021/users/',
 
-  ApiUpdateUser: 'http://127.0.0.1:5023/users/',
+  ApiUpdateUser: 'http://54.166.75.139:5023/users/',
 
-  ApiListUser: 'http://127.0.0.1:5022/users/',
+  ApiListUser: 'http://54.166.75.139:5022/users/',
 
-  ApiFindUser: 'http://127.0.0.1:5022/users/',
+  ApiFindUser: 'http://54.166.75.139:5022/users/',
 };
 
 export const LocalApiProducts = {
   production: false,
-  ApiCreateProduct: 'http://localhost:5000/api/products/create',
+  ApiCreateProduct: 'http://44.221.230.43:5000/api/products/create',
 
-  ApiDeleteProduct: 'http://localhost:5001/api/products/delete/',
+  ApiDeleteProduct: 'http://44.221.230.43:5001/api/products/delete/',
 
-  ApiUpdateProduct: 'http://localhost:5003/api/products/update/',
+  ApiUpdateProduct: 'http://44.221.230.43:5003/api/products/update/',
 
-  ApiListProduct: 'http://localhost:5002/api/products/list',
+  ApiListProduct: 'http://44.221.230.43:5002/api/products/list',
 
-  ApiFindProduct: 'http://localhost:5002/api/products/',
+  ApiFindProduct: 'http://44.221.230.43:5002/api/products/',
 };
 
 export const LocalApiCategory = {
@@ -39,12 +39,12 @@ export const LocalApiCategory = {
 
 export const LocalApiAuthService = {
   production: false,
-  ApiLocalLogin: 'http://localhost:5030/login',
+  ApiLocalLogin: 'http://34.234.127.78:5030/login',
 
-  ApiLocalHash: 'http://localhost:5031/hash-password',
+  ApiLocalHash: 'http://34.234.127.78:5031/hash-password',
 
-  ApiLocalRol: 'http://localhost:5032/check-role',
+  ApiLocalRol: 'http://34.234.127.78:5032/check-role',
 
-  ApiLocalToken: 'http://localhost:5032/me',
+  ApiLocalToken: 'http://34.234.127.78:5032/me',
 
 };
