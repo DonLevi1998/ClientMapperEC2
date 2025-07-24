@@ -5,7 +5,15 @@ const morgan = require('morgan');
 const { hashPasswordEndpoint } = require('./controllers/hashController');
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://54.166.75.139:5020',
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: false
+};
+app.use(cors(corsOptions));
+
 app.use(morgan('dev'));
 app.use(express.json());
 
