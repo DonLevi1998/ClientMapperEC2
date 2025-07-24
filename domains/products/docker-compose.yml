@@ -1,65 +1,45 @@
 services:
   products-create:
     build: ./PR-products-create
+    env_file: .env
     image: leviathan119/createproduct:latest  
     ports:
       - "5000:5000"
     restart: unless-stopped
-    environment:
-      - RDS_HOST=${RDS_HOST}              
-      - RDS_DATABASE=${RDS_DATABASE}
-      - RDS_USER=${RDS_USER}
-      - RDS_PASSWORD=${RDS_PASSWORD}
-      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
 
   products-delete:
     build: ./PR-products-delete
+    env_file: .env
     image: leviathan119/deleteproduct:latest
     container_name: products-delete
     ports:
       - "5001:5001"
     restart: unless-stopped
-    environment:
-      - RDS_HOST=${RDS_HOST}
-      - RDS_DATABASE=${RDS_DATABASE}
-      - RDS_USER=${RDS_USER}
-      - RDS_PASSWORD=${RDS_PASSWORD}
-      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
     
   products-read:
     build: ./PR-products-read
+    env_file: .env
     image: leviathan119/readproduct:latest
     container_name: products-read
     ports:
       - "5002:5002"
     restart: unless-stopped
-    environment:
-      - RDS_HOST=${RDS_HOST}
-      - RDS_DATABASE=${RDS_DATABASE}
-      - RDS_USER=${RDS_USER}
-      - RDS_PASSWORD=${RDS_PASSWORD}
-      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
 
 
   products-update:
     build: ./PR-products-update
+    env_file: .env
     image: leviathan119/updateproduct:latest
     container_name: products-update
     ports:
       - "5003:5003"
     restart: unless-stopped
-    environment:
-      - RDS_HOST=${RDS_HOST}
-      - RDS_DATABASE=${RDS_DATABASE}
-      - RDS_USER=${RDS_USER}
-      - RDS_PASSWORD=${RDS_PASSWORD}
-      - RDS_PORT=${RDS_PORT}
     networks:
       - products-network
 
