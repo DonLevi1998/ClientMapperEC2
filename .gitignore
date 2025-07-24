@@ -28,3 +28,4 @@ bin/
 *.log
 ClientMapperEC.sln
 *.swp
+.fake
